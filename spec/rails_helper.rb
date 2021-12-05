@@ -71,7 +71,7 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-Rspec.configure do |config|
+RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
