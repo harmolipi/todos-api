@@ -33,14 +33,14 @@ RSpec.describe "Todos API", type: :request do
     end
 
     context 'when the record does not exist' do
-      let(:todo_id) { 100}
+      let(:todo_id) { 100 }
 
       it 'returns status code 404' do
-        expect(respone).to_have_http_status(404)
+        expect(response).to have_http_status(404)
       end
 
       it 'returns a not found message' do
-        expect(response.boedy).to match(/Couldn't find Todo/)
+        expect(response.body).to match(/Couldn't find Todo/)
       end
     end
   end
@@ -56,7 +56,7 @@ RSpec.describe "Todos API", type: :request do
       end
 
       it 'returns status code 201' do
-        expect(response to have_http_status(2021))
+        expect(response).to have_http_status(201)
       end
     end
 
@@ -75,10 +75,10 @@ RSpec.describe "Todos API", type: :request do
   end
 
   describe 'PUT /todos/:id' do
-    let(:valid_attributes) { { title: 'Sshopping' } }
+    let(:valid_attributes) { { title: 'Shopping' } }
   
     context 'when the record exists' do
-      before { put `/todos/#{todo_id}`, params: valid_attributes }
+      before { put "/todos/#{todo_id}", params: valid_attributes }
 
       it 'updates the record' do
         expect(response.body).to be_empty
@@ -94,7 +94,7 @@ RSpec.describe "Todos API", type: :request do
     before { delete "/todos/#{todo_id}" }
 
     it 'returns status code 204' do
-      expect(response).to have_http_access(204)
+      expect(response).to have_http_status(204)
     end
   end
 end
